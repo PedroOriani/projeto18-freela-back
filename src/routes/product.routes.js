@@ -9,7 +9,7 @@ const productRouter = Router();
 productRouter.post('/product', validateAuth, validateSchema(productSchema), addProduct)
 productRouter.get('/products', getProducts)
 productRouter.get('/products/:id', getProductById)
-productRouter.get('/products/me', validateAuth, getMyProducts)
-productRouter.delete('/products/me', validateAuth, deleteProduct)
+productRouter.get('/myproducts', validateAuth, getMyProducts)
+productRouter.delete('/product', validateAuth, deleteProduct)
 
 export default productRouter

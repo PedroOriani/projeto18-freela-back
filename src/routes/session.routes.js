@@ -9,6 +9,6 @@ const sessionRouter = Router();
 
 sessionRouter.post('/signup', validateSchema(signUpSchema), signUp);
 sessionRouter.post('/signin', validateSchema(signInSchema), signIn);
-sessionRouter.post('/logout', logOut);
+sessionRouter.post('/logout', validateAuth, logOut);
 
 export default sessionRouter;

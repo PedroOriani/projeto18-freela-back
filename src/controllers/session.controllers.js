@@ -42,7 +42,7 @@ export async function signIn(req, res){
 
         const token = uuid();
 
-        await db.query(`DELETE FROM sessions WHERE id=$1;`, [user.id]);
+        await db.query(`DELETE FROM sessions WHERE "userID"=$1;`, [user.id]);
 
         await db.query(`INSERT INTO sessions ("userID", token) VALUES ($1, $2);`, [user.id, token]);
 
@@ -55,9 +55,11 @@ export async function signIn(req, res){
 
 export async function logOut(req, res){
 
+    const user = res.locals.user
+
     try{
 
-        await db.query(`DELETE FROM sessions`);
+        await db.query(`DELETE FROM sessions WHERE "userID"=$1`, [user.rows[0].id]);
 
         res.sendStatus(200);
 
