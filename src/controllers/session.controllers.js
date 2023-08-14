@@ -42,13 +42,26 @@ export async function signIn(req, res){
 
         const token = uuid();
 
-        await db.query(`DELETE * FROM users WHERE id=$1;`, [user.id]);
+        await db.query(`DELETE * FROM sessions WHERE id=$1;`, [user.id]);
 
         await db.query(`INSERT INTO sessions ("userId", token) VALUES ($1, $2);`, [user.id, token]);
 
         res.status(200).send({token: token})
 
     }catch{
+        res.status(500).send(err.message)
+    }
+}
+
+export async function logOut(req, res){
+
+    try{
+
+        await db.query(`DELETE * FROM sessions`);
+
+        res.sendStatus(200);
+
+    }catch (err){
         res.status(500).send(err.message)
     }
 }

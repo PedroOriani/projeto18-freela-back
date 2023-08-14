@@ -5,10 +5,10 @@ export const signUpSchema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().required(),
     confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
-    CPF: Joi.string().length(11).required(),
-    celphone: Joi.string().min(10).max(11).required(),
-    city: Joi.string().required()
-
+    CPF: Joi.string().regex(/^\d{11}$/).required(),
+    celphone: Joi.string().regex(/^\d{10,11}$/).required(),
+    city: Joi.string().required(),
+    state: Joi.string().regex(/^\[A-Z]{2}$/).uppercase().required()
 })
 
 export const signInSchema = Joi.object({
