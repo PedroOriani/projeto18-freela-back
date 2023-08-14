@@ -32,7 +32,7 @@ export async function getProductById(req, res){
     }
 }
 
-export async function myProducts(req, res){
+export async function getMyProducts(req, res){
 
     const { id } = req.params
 
