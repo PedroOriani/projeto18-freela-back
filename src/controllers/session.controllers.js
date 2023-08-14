@@ -42,9 +42,9 @@ export async function signIn(req, res){
 
         const token = uuid();
 
-        await db.query(`DELETE * FROM sessions WHERE id=$1;`, [user.id]);
+        await db.query(`DELETE FROM sessions WHERE id=$1;`, [user.id]);
 
-        await db.query(`INSERT INTO sessions ("userId", token) VALUES ($1, $2);`, [user.id, token]);
+        await db.query(`INSERT INTO sessions ("userID", token) VALUES ($1, $2);`, [user.id, token]);
 
         res.status(200).send({token: token})
 
