@@ -27,7 +27,7 @@ export async function getProducts(req, res){
 
         const user = await db.query(`SELECT * FROM users WHERE id=$1;`, [products.rows[0].ownerId])
 
-        res.status(200).send({product: products.rows, address: user.rows[0].city + " - " + user.rows[0].state})
+        res.status(200).send(products.rows)
 
     }catch (err){
         res.status(500).send(err.message)
@@ -83,7 +83,7 @@ export async function getMyProducts(req, res){
         const myProducts = await db.query(`SELECT * FROM products WHERE "ownerId"=$1;`, [user.rows[0].id]);
         if (myProducts.rowCount === 0) return res.status(404).send({message: 'Você não tem nenhum produto a venda'});
 
-        res.status(200).send({product: myProducts.rows, address: user.rows[0].city + " - " + user.rows[0].state})
+        res.status(200).send(myProducts.rows)
 
     }catch (err){
         res.status(500).send(err.message)
