@@ -8,7 +8,7 @@ export async function addProduct(req, res){
 
     try{
 
-        await adicionarProduto(user.rows[0].id)
+        await adicionarProduto(user.rows[0].id, photo, title, model, description, price, quantity)
 
         res.status(201).send({message: "Produto adicionado com sucesso"})
 
