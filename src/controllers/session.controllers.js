@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid'
 
 export async function signUp(req, res){
 
-    const { name, email, password, CPF, cellphone, city } = req.body;
+    const { name, email, password, cpf, phone, city, state } = req.body;
 
     const hash = bcrypt.hashSync(password, 10);
 
@@ -14,12 +14,12 @@ export async function signUp(req, res){
 
         if (verEmail.rowCount > 0) return res.status(409).send({message: 'Este email ja está sendo utilizado por outro usuário'});
         
-        await db.query(`INSERT INTO users (name, email, password, CPF, cellphone, city) VALUES ($1, $2, $3, $4, $5, $6);`,
-        [name, email, hash, CPF, cellphone, city]);
+        await db.query(`INSERT INTO users (name, email, password, cpf, phone, city, state) VALUES ($1, $2, $3, $4, $5, $6, $7);`,
+        [name, email, hash, cpf, phone, city, state]);
 
         res.sendStatus(201);
 
-    }catch{
+    }catch (err) {
         res.status(500).send(err.message)
     }
 }
@@ -48,7 +48,7 @@ export async function signIn(req, res){
 
         res.status(200).send({token: token})
 
-    }catch{
+    }catch (err) {
         res.status(500).send(err.message)
     }
 }
@@ -57,7 +57,7 @@ export async function logOut(req, res){
 
     try{
 
-        await db.query(`DELETE * FROM sessions`);
+        await db.query(`DELETE FROM sessions`);
 
         res.sendStatus(200);
 
