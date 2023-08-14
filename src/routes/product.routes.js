@@ -10,6 +10,6 @@ productRouter.post('/product', validateAuth, validateSchema(productSchema), addP
 productRouter.get('/products', getProducts)
 productRouter.get('/products/:id', getProductById)
 productRouter.get('/myproducts', validateAuth, getMyProducts)
-productRouter.delete('/product', validateAuth, deleteProduct)
+productRouter.delete('/product/:id', validateAuth, deleteProduct)
 
 export default productRouter
