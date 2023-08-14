@@ -27,7 +27,7 @@ export async function getProducts(req, res){
 
         const user = await db.query(`SELECT * FROM users WHERE id=$1;`, [products.rows[0].ownerId])
 
-        res.status(200).send({product: products.rows, address: user.city + " - " + user.state})
+        res.status(200).send({product: products.rows, address: user.rows[0].city + " - " + user.rows[0].state})
 
     }catch (err){
         res.status(500).send(err.message)
