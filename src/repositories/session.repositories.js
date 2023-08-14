@@ -1,5 +1,4 @@
-import { func } from "joi";
-import { db } from "../database/database.connection";
+import { db } from "../database/database.connection.js";
 
 export async function verifyEmail (email){
     return db.query(`SELECT * FROM users WHERE email=$1;`, [email]);

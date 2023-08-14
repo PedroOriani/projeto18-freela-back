@@ -1,4 +1,4 @@
-import { db } from "../database/database.connection";
+import { db } from "../database/database.connection.js";
 
 export async function adicionarProduto (id, photo, title, model, description, price, quantity){
     return db.query(`INSERT INTO products ("ownerId", photo, title, model, description, price, quantity) VALUES ($1, $2, $3, $4, $5, $6, $7);`,

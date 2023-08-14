@@ -1,4 +1,3 @@
-import { db } from '../database/database.connection.js'
 import { adicionarProduto, deletarProduct, getalldata, joinProductById, meusprodutos } from '../repositories/product.repositories.js';
 
 export async function addProduct(req, res){
