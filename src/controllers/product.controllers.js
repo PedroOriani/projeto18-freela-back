@@ -64,7 +64,7 @@ export async function getProductById(req, res){
             quantity: product.quantity,
             ownerName: product.ownerName,
             phone: product.phone,
-            adress: product.city + " - " + product.state
+            address: product.city + " - " + product.state
         })
 
     }catch (err){
