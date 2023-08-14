@@ -11,7 +11,7 @@ export async function addProduct(req, res){
         await db.query(`INSERT INTO products ("ownerId", photo, title, model, description, price, quantity) VALUES ($1, $2, $3, $4, $5, $6, $7);`,
         [user.rows[0].id, photo, title, model, description, price, quantity])
 
-        res.status(201).send({message: "Produto adicionado com sucesso"})
+        res.status(201).send({message: "Produto adicionado com sucesso", address: user.city + " - " + user.state})
 
     }catch (err){
         res.status(500).send(err.message)
